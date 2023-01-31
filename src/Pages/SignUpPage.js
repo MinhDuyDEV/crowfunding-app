@@ -24,7 +24,7 @@ const schema = yup
       .string()
       .min(8, "Your password must be at least 8 characters or greater")
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&])[A-Za-z\d@$#!%*?&]{8,}$/,
         {
           message:
             "Your password must have at least uppercase, 1 lowercase and 1 special characters",
@@ -59,11 +59,11 @@ const SignUpPage = () => {
           Sign in
         </Link>
       </p>
-      <button className="flex items-center justify-center w-full py-4 mb-5 text-base font-semibold border rounded-xl gap-x-3 border-stroke text-text2">
+      <button className="flex items-center justify-center w-full py-4 mb-5 text-base font-semibold border rounded-xl gap-x-3 border-stroke text-text2 dark:border-darkStroke dark:text-white">
         <img srcSet="/icon-google.png 2x" alt="google" />
         <span>Sign up with google</span>
       </button>
-      <p className="mb-4 text-xs font-normal text-center lg:mb-8 text-text2 lg:text-sm">
+      <p className="mb-4 text-xs font-normal text-center dark:text-white lg:mb-8 text-text2 lg:text-sm">
         Or sign up with email
       </p>
       <form onSubmit={handleSubmit(handleSignUp)}>
@@ -104,7 +104,7 @@ const SignUpPage = () => {
         </FormGroup>
 
         <Checkbox name="term" checked={acceptTerm} onClick={handleToggleTerm}>
-          <p className="flex-1 text-xs lg:text-sm text-text2">
+          <p className="flex-1 text-xs lg:text-sm text-text2 dark:text-text3">
             I agree to the{" "}
             <span className="underline text-secondary">Terms of Use</span> and
             have read and understand the{" "}

@@ -5,7 +5,15 @@ import { withErrorBoundary } from "react-error-boundary";
 import { useController } from "react-hook-form";
 
 const Input = (props) => {
-  const { control, name, type = "text", error = "", children, ...rest } = props;
+  const {
+    control,
+    name,
+    type = "text",
+    error = "",
+    placeholder = "",
+    children,
+    ...rest
+  } = props;
   const { field } = useController({
     control,
     name,
@@ -18,9 +26,12 @@ const Input = (props) => {
           control={control}
           id={name}
           type={type}
-          className={`w-full px-6 py-4 text-sm font-medium border rounded-xl text-text1 placeholder:text-text4 ${
-            error.length > 0 ? "border-error" : "border-stroke"
+          className={`w-full px-6 py-4 text-sm dark:text-white bg-transparent font-medium border rounded-xl dark:placeholder:text-text2 text-text1 placeholder:text-text4 ${
+            error.length > 0
+              ? "border-error"
+              : "border-stroke : dark:border-darkStroke"
           } ${children ? "pr-16" : ""}`}
+          placeholder={error.length > 0 ? placeholder : ""}
           {...rest}
           {...field}
         />
@@ -29,12 +40,12 @@ const Input = (props) => {
             {children}
           </div>
         )}
+        {error.length > 0 && (
+          <span className="absolute text-sm font-medium pointer-events-none left-6 top-2/4 -translate-y-2/4 text-error error-input">
+            {error}
+          </span>
+        )}
       </div>
-      {error.length > 0 && (
-        <span className="text-sm font-medium select-none text-error">
-          {error}
-        </span>
-      )}
     </>
   );
 };
