@@ -8,14 +8,39 @@ import FormGroup from "components/common/FormGroup";
 import { Button } from "components/button";
 import { Checkbox } from "components/checkbox";
 import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object()
+  .shape({
+    name: yup.string().required("This field is required."),
+    email: yup
+      .string()
+      .email("Please enter valid email address")
+      .required("Please enter your email address"),
+    password: yup
+      .string()
+      .min(8, "Your password must be at least 8 characters or greater")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        {
+          message:
+            "Your password must have at least uppercase, 1 lowercase and 1 special characters",
+        }
+      )
+      .required("Please enter your password"),
+  })
+  .required();
 
 const SignUpPage = () => {
   const {
     handleSubmit,
     control,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm({
     mode: "onChange",
+    resolver: yupResolver(schema),
   });
   const handleSignUp = (values) => {
     if (!isValid) return;
@@ -48,6 +73,7 @@ const SignUpPage = () => {
             type="text"
             name="name"
             placeholder="John Doe"
+            error={errors.name?.message}
           ></Input>
         </FormGroup>
         <FormGroup>
@@ -57,6 +83,7 @@ const SignUpPage = () => {
             type="email"
             name="email"
             placeholder="example@gmail.com"
+            error={errors.email?.message}
           ></Input>
         </FormGroup>
         <FormGroup>
@@ -66,6 +93,7 @@ const SignUpPage = () => {
             type="password"
             name="password"
             placeholder="Create a password"
+            error={errors.password?.message}
           ></Input>
         </FormGroup>
 
