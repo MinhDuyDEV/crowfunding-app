@@ -1,15 +1,16 @@
+import useToggleValue from "hooks/useToggleValue";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { Input } from "components/input";
-import { Label } from "components/label";
 import LayoutAuthentication from "layouts/LayoutAuthentication";
 import FormGroup from "components/common/FormGroup";
-import { Button } from "components/button";
-import { Checkbox } from "components/checkbox";
-import { useState } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { Label } from "components/label";
+import { Input } from "components/input";
+import { IconEyeToggle } from "components/icons";
+import { Checkbox } from "components/checkbox";
+import { Button } from "components/button";
 
 const schema = yup
   .object()
@@ -34,6 +35,10 @@ const schema = yup
   .required();
 
 const SignUpPage = () => {
+  const { value: acceptTerm, handleToggleValue: handleToggleTerm } =
+    useToggleValue();
+  const { value: showPassword, handleToggleValue: handleTogglePassword } =
+    useToggleValue();
   const {
     handleSubmit,
     control,
@@ -45,10 +50,6 @@ const SignUpPage = () => {
   const handleSignUp = (values) => {
     if (!isValid) return;
     console.log("🚀 ~ file: SignUpPage.js:14 ~ handleSignUp ~ values", values);
-  };
-  const [acceptTerm, setAcceptTerm] = useState(false);
-  const handleToggleTerm = () => {
-    setAcceptTerm(!acceptTerm);
   };
   return (
     <LayoutAuthentication heading="Sign Up">
@@ -90,22 +91,27 @@ const SignUpPage = () => {
           <Label htmlFor="password">Password *</Label>
           <Input
             control={control}
-            type="password"
+            type={`${showPassword ? "text" : "password"}`}
             name="password"
             placeholder="Create a password"
             error={errors.password?.message}
-          ></Input>
+          >
+            <IconEyeToggle
+              open={showPassword}
+              onClick={handleTogglePassword}
+            ></IconEyeToggle>
+          </Input>
         </FormGroup>
 
         <Checkbox name="term" checked={acceptTerm} onClick={handleToggleTerm}>
-          <p className="flex-1 text-sm text-text2">
+          <p className="flex-1 text-xs lg:text-sm text-text2">
             I agree to the{" "}
             <span className="underline text-secondary">Terms of Use</span> and
             have read and understand the{" "}
             <span className="underline text-secondary">Privacy policy.</span>
           </p>
         </Checkbox>
-        <Button type="submit" className="w-full bg-primary">
+        <Button type="submit" className="w-full select-none bg-primary">
           Create my account
         </Button>
       </form>
