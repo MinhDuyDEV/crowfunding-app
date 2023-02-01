@@ -12,7 +12,4 @@
   input[type="password"]::-ms-clear {
     display: none;
   }
-  input:focus + .error-input {
-    display: none;
-  }
 }
