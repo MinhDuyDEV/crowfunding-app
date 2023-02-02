@@ -20,6 +20,8 @@ module.exports = {
         stroke: "#F1F1F3",
         lite: "#FCFCFD",
         error: "#EB5757",
+        red2: "#422C32",
+        redSoft: "#F9E3E3",
         "dark-bg": "#13131A",
         darkSecondary: "#1C1C24",
         softDark: "#22222C",

@@ -19,7 +19,7 @@ const CampaignItem = () => {
         </CampaignDesc>
         <div className="flex items-start justify-between mb-5 gap-x-5">
           <CampaignAmount size="small"></CampaignAmount>
-          <CampaignBackers></CampaignBackers>
+          <CampaignBackers size="small"></CampaignBackers>
         </div>
         <CampaignAuthor></CampaignAuthor>
       </div>
