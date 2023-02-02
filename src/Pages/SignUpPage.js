@@ -49,7 +49,7 @@ const SignUpPage = () => {
   });
   const handleSignUp = (values) => {
     if (!isValid) return;
-    console.log("🚀 ~ file: SignUpPage.js:14 ~ handleSignUp ~ values", values);
+    console.log("🚀 ~ handleSignUp ~ values", values);
   };
   return (
     <LayoutAuthentication heading="Sign Up">

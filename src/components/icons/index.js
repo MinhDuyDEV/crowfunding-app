@@ -6,6 +6,7 @@ import IconWithDraw from "./IconWithDraw";
 import IconProfile from "./IconProfile";
 import IconLogout from "./IconLogout";
 import IconLight from "./IconLight";
+import IconFolder from "./IconFolder";
 
 export {
   IconEyeToggle,
@@ -16,4 +17,5 @@ export {
   IconProfile,
   IconLogout,
   IconLight,
+  IconFolder,
 };

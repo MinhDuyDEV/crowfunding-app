@@ -18,9 +18,9 @@ const DashboardTopBar = () => {
           Start a campaign
         </Button>
         <img
-          srcSet="/logo.png 2x"
+          src="/mixiface.jpg"
           alt="crowfunding-app"
-          className="object-cover rounded-full"
+          className="object-cover rounded-full h-[52px] w-[52px]"
         />
       </div>
     </div>
