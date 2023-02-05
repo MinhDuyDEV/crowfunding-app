@@ -17,3 +17,20 @@
     display: none;
   }
 }
+.quill {
+  @apply border border-stroke rounded-[10px] text-center px-[25px] py-[15px] min-h-[420px];
+  .ql-toolbar.ql-snow {
+    border: none;
+    @apply bg-text4 bg-opacity-10 inline-block rounded-[10px] py-3 px-5;
+  }
+  .ql-container.ql-snow,
+  .ql-editor {
+    @apply border-none font-primary text-sm;
+  }
+  .ql-editor {
+    @apply pt-10;
+  }
+  .ql-editor.ql-blank::before {
+    @apply text-sm font-medium text-text4 not-italic;
+  }
+}
