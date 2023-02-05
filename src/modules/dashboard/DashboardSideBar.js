@@ -39,7 +39,7 @@ const sidebarLinks = [
   {
     icon: <IconLogout></IconLogout>,
     title: "Logout",
-    url: "#",
+    url: "/logout",
     onclick: () => {},
   },
   {
@@ -51,13 +51,19 @@ const sidebarLinks = [
 ];
 
 const DashboardSideBar = () => {
+  const navLinkClass =
+    "flex items-center gap-x-5 md:w-12 md:h-12 md:justify-center md:rounded-[20px] md:mb-[30px] last:mt-auto last:bg-white last:mb-0 last:shadow-[10px_10px_20px_rgba(211,_211,_211,_0.25)]";
   return (
-    <div className="w-full md:w-[76px] bg-white shadow-[10px_10px_20px_rgba(218,_213,_213,_0.15)] rounded-[20px] px-[14px] py-10 flex flex-col flex-shrink-0">
+    <div className="w-full text-icon-color md:w-[76px] bg-white shadow-[10px_10px_20px_rgba(218,_213,_213,_0.15)] rounded-[20px] px-[14px] py-10 flex flex-col flex-shrink-0">
       {sidebarLinks.map((link) => (
         <NavLink
           to={link.url}
           key={link.title}
-          className="flex items-center gap-x-5 md:w-12 md:h-12 md:justify-center md:rounded-[20px] md:mb-[30px] text-icon-color last:mt-auto last:bg-white last:mb-0 last:shadow-[10px_10px_20px_rgba(211,_211,_211,_0.25)]"
+          className={({ isActive }) =>
+            isActive
+              ? `${navLinkClass} text-primary bg-primaryExtra2`
+              : `${navLinkClass} 'text-icon-color'`
+          }
         >
           <span>{link.icon}</span>
           <span className="md:hidden">{link.title}</span>

@@ -8,6 +8,7 @@ import IconLogout from "./IconLogout";
 import IconLight from "./IconLight";
 import IconFolder from "./IconFolder";
 import IconClose from "./IconClose";
+import IconPlus from "./IconPlus";
 
 export {
   IconEyeToggle,
@@ -20,4 +21,5 @@ export {
   IconLight,
   IconFolder,
   IconClose,
+  IconPlus,
 };

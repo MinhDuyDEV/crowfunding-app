@@ -14,7 +14,7 @@ const DashboardPage = () => {
       <CampaignFeature></CampaignFeature>
       <Gap></Gap>
       <Heading>Popular Campaign</Heading>
-      <CampaignGrid>
+      <CampaignGrid type="default">
         {Array(4)
           .fill(0)
           .map((campaign) => (

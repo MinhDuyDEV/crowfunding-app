@@ -5,6 +5,7 @@ const SignUpPage = lazy(() => import("./Pages/SignUpPage"));
 const SignInPage = lazy(() => import("./Pages/SignInPage"));
 const VerifyPage = lazy(() => import("./Pages/VerifyPage"));
 const CongratulationPage = lazy(() => import("./Pages/CongratulationPage"));
+const CampaignPage = lazy(() => import("Pages/CampaignPage"));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           path="/congratulation"
           element={<CongratulationPage></CongratulationPage>}
         ></Route>
+        <Route path="/campaign" element={<CampaignPage></CampaignPage>}></Route>
       </Routes>
     </Suspense>
   );
