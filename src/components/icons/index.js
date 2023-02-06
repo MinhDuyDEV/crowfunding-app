@@ -9,6 +9,7 @@ import IconLight from "./IconLight";
 import IconFolder from "./IconFolder";
 import IconClose from "./IconClose";
 import IconPlus from "./IconPlus";
+import IconMoneyBag from "./IconMoneyBag";
 
 export {
   IconEyeToggle,
@@ -22,4 +23,5 @@ export {
   IconFolder,
   IconClose,
   IconPlus,
+  IconMoneyBag,
 };

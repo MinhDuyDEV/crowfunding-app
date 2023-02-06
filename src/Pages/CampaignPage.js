@@ -1,14 +1,13 @@
 import { Button } from "components/button";
 import Heading from "components/common/Heading";
-import LayoutDashboard from "layouts/LayoutDashboard";
 import CampaignCreate from "modules/campaign/CampaignCreate";
 import CampaignFeature from "modules/campaign/CampaignFeature";
 import CampaignGrid from "modules/campaign/CampaignGrid";
-import React from "react";
+import React, { Fragment } from "react";
 
 const CampaignPage = () => {
   return (
-    <LayoutDashboard>
+    <Fragment>
       <CampaignCreate></CampaignCreate>
       <Heading number={4}>Your Campaign</Heading>
       <CampaignGrid type="secondary">
@@ -37,7 +36,7 @@ const CampaignPage = () => {
           </svg>
         </Button>
       </div>
-    </LayoutDashboard>
+    </Fragment>
   );
 };
 
