@@ -8,6 +8,7 @@ const SignInPage = lazy(() => import("./Pages/SignInPage"));
 const DashboardPage = lazy(() => import("./Pages/DashboardPage"));
 const CongratulationPage = lazy(() => import("./Pages/CongratulationPage"));
 const CampaignPage = lazy(() => import("Pages/CampaignPage"));
+const CampaignView = lazy(() => import("modules/campaign/CampaignView"));
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
           <Route
             path="/start-campaign"
             element={<StartCampaignPage></StartCampaignPage>}
+          ></Route>
+          <Route
+            path="/campaign/:slug"
+            element={<CampaignView></CampaignView>}
           ></Route>
         </Route>
         <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>

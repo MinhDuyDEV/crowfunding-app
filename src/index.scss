@@ -34,3 +34,7 @@
     @apply text-sm font-medium text-text4 not-italic;
   }
 }
+.shadow-1 {
+  box-shadow: -4px 4px 8px rgba(226, 226, 226, 0.2),
+    4px 4px 8px rgba(226, 226, 226, 0.2);
+}
