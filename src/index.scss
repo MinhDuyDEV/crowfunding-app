@@ -38,3 +38,13 @@
   box-shadow: -4px 4px 8px rgba(226, 226, 226, 0.2),
     4px 4px 8px rgba(226, 226, 226, 0.2);
 }
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+.scroll-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scroll-hidden::-webkit-scrollbar {
+  display: none;
+}

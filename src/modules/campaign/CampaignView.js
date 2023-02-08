@@ -85,7 +85,9 @@ const CampaignView = () => {
         </Button>
       </div>
       <div className="grid gap-x-[124px] grid-cols-[1.3fr,1fr] mb-[70px]">
-        <div></div>
+        <div>
+          <h2>Story</h2>
+        </div>
         <div>
           <CampaignSupport></CampaignSupport>
           <div className="mb-[60px]"></div>
