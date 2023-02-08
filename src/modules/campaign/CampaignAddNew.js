@@ -1,4 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { useForm } from "react-hook-form";
 import FormRow from "components/common/FormRow";
 import FormGroup from "components/common/FormGroup";
@@ -9,11 +14,15 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageUploader from "quill-image-uploader";
 import { Button } from "components/button";
+import { createLogger } from "redux-logger";
+import axios from "axios";
+import useOnChange from "hooks/useOnChange";
+import { toast } from "react-toastify";
 Quill.register("modules/imageUploader", ImageUploader);
 
 const CampaignAddNew = () => {
   const [content, setContent] = useState("");
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     mode: onsubmit,
   });
   const handleAddNewCampaign = (values) => {};
@@ -45,6 +54,26 @@ const CampaignAddNew = () => {
     }),
     []
   );
+  const handleSelectDropdownOption = (name, value) => {
+    setValue(name, value);
+  };
+
+  const [filterCountry, setFilterCountry] = useOnChange(500);
+  const [countries, setCountries] = useState([]);
+  useEffect(() => {
+    async function fetchCounties() {
+      if (!filterCountry) return;
+      try {
+        const response = await axios.get(
+          `https://restcountries.com/v3.1/name/${filterCountry}`
+        );
+        setCountries(response.data);
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+    fetchCounties();
+  }, [filterCountry]);
   return (
     <div className="px-[66px] py-10 bg-white rounded-xl">
       <div className="flex gap-x-[10px] items-center max-w-[380px] rounded-[10px] mx-auto justify-center px-[59px] py-4 bg-text4 bg-opacity-10 text-[25px] mb-10">
@@ -67,17 +96,20 @@ const CampaignAddNew = () => {
             <Dropdown>
               <Dropdown.Select placeholder="Select the category"></Dropdown.Select>
               <Dropdown.List>
-                <Dropdown.Option>Architecture</Dropdown.Option>
-                <Dropdown.Option>Real Estate</Dropdown.Option>
-                <Dropdown.Option>Film</Dropdown.Option>
-                <Dropdown.Option>Camera Gear</Dropdown.Option>
+                <Dropdown.Option
+                  onClick={() =>
+                    handleSelectDropdownOption("category", "Architecture")
+                  }
+                >
+                  Architecture
+                </Dropdown.Option>
               </Dropdown.List>
             </Dropdown>
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <Label htmlFor="description">Short Description *</Label>
-          <Textarea control={control} name="description"></Textarea>
+          <Label>Short Description *</Label>
+          <Textarea control={control} name="short_description"></Textarea>
         </FormGroup>
         <FormGroup>
           <Label htmlFor="story">Story *</Label>
@@ -140,7 +172,26 @@ const CampaignAddNew = () => {
             <Label>Country</Label>
             <Dropdown>
               <Dropdown.Select placeholder="Select a country  "></Dropdown.Select>
-              <Dropdown.List></Dropdown.List>
+              <Dropdown.List>
+                <Dropdown.Search
+                  placeholder="Search country"
+                  onChange={setFilterCountry}
+                ></Dropdown.Search>
+                {countries.length > 0 &&
+                  countries.map((country) => (
+                    <Dropdown.Option
+                      key={country?.name?.common}
+                      onClick={() =>
+                        handleSelectDropdownOption(
+                          "country",
+                          country?.name?.common
+                        )
+                      }
+                    >
+                      {country?.name?.common}
+                    </Dropdown.Option>
+                  ))}
+              </Dropdown.List>
             </Dropdown>
           </FormGroup>
         </FormRow>
