@@ -6,3 +6,10 @@ export const requestAuthRegister = (data) => {
     ...data,
   });
 };
+
+export const requestAuthLogin = (data) => {
+  console.log("🚀 ~ requestAuthLogin ~ data", data);
+  return axios.post("/auth/login", {
+    ...data,
+  });
+};

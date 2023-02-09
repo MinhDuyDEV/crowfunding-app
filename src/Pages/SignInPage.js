@@ -10,6 +10,8 @@ import { IconEyeToggle } from "components/icons";
 import { Button, ButtonGoogle } from "components/button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { authLogin } from "store/auth/auth-slice";
 
 const schema = yup.object().shape({
   email: yup
@@ -40,15 +42,16 @@ const SignInPage = () => {
     mode: "onSubmit",
     resolver: yupResolver(schema),
   });
+  const dispatch = useDispatch();
   const handleSignIn = (values) => {
-    console.log("🚀 ~ file: SignInPage.js:23 ~ SignInPage ~ values", values);
+    dispatch(authLogin(values));
   };
   return (
     <LayoutAuthentication heading="Welcome Back!">
       <p className="mb-6 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-8">
         Don't have an account?{" "}
-        <Link to="/sign-up" className="font-medium underline text-primary">
-          Sign up
+        <Link to="/register" className="font-medium underline text-primary">
+          Register
         </Link>
       </p>
       <ButtonGoogle text="Sign in with google"></ButtonGoogle>
