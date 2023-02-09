@@ -5,10 +5,10 @@ const Select = ({ placeholder = "", className = "" }) => {
   const { show, toggle } = useDropdown();
   return (
     <div
-      className={`flex items-center justify-between py-4 px-5 bg-white text-text4 select-none border w-full border-stroke rounded-lg text-sm cursor-pointer font-medium ${className}`}
+      className={`flex items-center justify-between py-4 px-5 bg-white select-none border w-full border-stroke rounded-lg text-sm cursor-pointer font-medium ${className}`}
       onClick={toggle}
     >
-      <span>{placeholder}</span>
+      <span className="capitalize">{placeholder}</span>
       <span>
         {show ? (
           <svg

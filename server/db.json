@@ -13,7 +13,9 @@
       "password": "$2b$10$R3TnssJhrYuXi5/u4r9bou/mQ4xllqVf.13rmDqOaPUU4uWyFIUsi",
       "email": "trananhtuan400@gmail.com",
       "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InR1YW50cmFuIiwiaWF0IjoxNjY1OTM5NzMyLCJleHAiOjE2NjYxMTI1MzJ9.9FhKpwnSU2bnUNFtLLOFEqC78_DK5a7xJrAzkr-jj1I",
-      "permissions": ["CREATE_CAMPAIGN"]
+      "permissions": [
+        "CREATE_CAMPAIGN"
+      ]
     }
   ],
   "categories": [],
@@ -65,6 +67,51 @@
       "endDate": "2022-08-23T17:12:09.546Z",
       "id": 3,
       "userId": 3
+    },
+    {
+      "title": "Powered Kits Learning Boxes",
+      "short_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos possimus voluptatum veritatis quos voluptatem labore libero nisi corporis ab, ipsam et repellendus illo odio repellat natus necessitatibus impedit architecto nihil.",
+      "goal": "100",
+      "amount": "200",
+      "prefilled": "10, 20",
+      "video": "https://www.youtube.com/watch?v=LWY_Ul2w7U0",
+      "category": "education",
+      "country": "Vietnam",
+      "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos possimus voluptatum veritatis quos voluptatem labore libero nisi corporis ab, ipsam et repellendus illo odio repellat natus necessitatibus impedit architecto nihil.</p>",
+      "startDate": "2023-02-09T08:19:26.796Z",
+      "endDate": "2023-02-10T17:00:00.000Z",
+      "id": 4
+    },
+    {
+      "title": "Powered Kits Learning Boxes",
+      "short_description": "Fun, durable and reusable boxes with\neco-friendly options.",
+      "goal": "100",
+      "amount": "200",
+      "prefilled": "10, 20",
+      "video": "https://www.youtube.com/watch?v=UbEBwHWIlk8",
+      "category": "education",
+      "country": "Vietnam",
+      "content": "<p><br></p><p>&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit atque rem ad fuga incidunt perspiciatis vel asperiores, aliquid, reprehenderit qui nobis ab fugiat voluptatem. Quas id expedita repellendus voluptas. Tempora.</p>",
+      "startDate": "2023-02-09T08:41:07.795Z",
+      "endDate": "2023-02-17T17:00:00.000Z",
+      "id": 5
+    },
+    {
+      "title": "",
+      "short_description": "",
+      "goal": "",
+      "amount": "",
+      "prefilled": "",
+      "video": "",
+      "featured_image": {
+        "medium": "https://i.ibb.co/B6dVYRy/96564160ff50340e6d41.jpg",
+        "thumb": "https://i.ibb.co/bvqgGns/96564160ff50340e6d41.jpg",
+        "url": "https://i.ibb.co/vdgxM83/96564160ff50340e6d41.jpg"
+      },
+      "content": "",
+      "startDate": "2023-02-09T10:07:26.060Z",
+      "endDate": "2023-02-09T10:07:26.060Z",
+      "id": 6
     }
   ]
 }
