@@ -11,6 +11,8 @@ import { Input } from "components/input";
 import { IconEyeToggle } from "components/icons";
 import { Checkbox } from "components/checkbox";
 import { Button, ButtonGoogle } from "components/button";
+import { useDispatch } from "react-redux";
+import { authRegister } from "store/auth/auth-slice";
 
 const schema = yup
   .object()
@@ -42,21 +44,27 @@ const SignUpPage = () => {
   const {
     handleSubmit,
     control,
-    formState: { isValid, errors },
+    reset,
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-  const handleSignUp = (values) => {
-    if (!isValid) return;
-    console.log("🚀 ~ handleSignUp ~ values", values);
+  const dispatch = useDispatch();
+  const handleSignUp = async (values) => {
+    try {
+      dispatch(authRegister(values));
+      reset({});
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <LayoutAuthentication heading="Sign Up">
       <p className="mb-6 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-8">
         Already have an account?{" "}
-        <Link to="/sign-in" className="font-medium underline text-primary">
-          Sign in
+        <Link to="/login" className="font-medium underline text-primary">
+          Login
         </Link>
       </p>
       <ButtonGoogle></ButtonGoogle>
