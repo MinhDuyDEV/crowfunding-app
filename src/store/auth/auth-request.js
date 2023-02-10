@@ -13,3 +13,20 @@ export const requestAuthLogin = (data) => {
     ...data,
   });
 };
+
+export const requestAuthFetchMe = (token) => {
+  if (!token) return;
+  return axios.get("/me", {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const requestAuthRefreshToken = (token) => {
+  if (!token) return;
+  return axios.post("/token", {
+    refreshToken: token,
+  });
+};

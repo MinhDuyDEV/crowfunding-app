@@ -1,7 +1,13 @@
 import { toast } from "react-toastify";
-import { requestAuthLogin, requestAuthRegister } from "./auth-request";
-import { call } from "redux-saga/effects";
+import {
+  requestAuthFetchMe,
+  requestAuthLogin,
+  requestAuthRefreshToken,
+  requestAuthRegister,
+} from "./auth-request";
+import { call, put } from "redux-saga/effects";
 import { saveToken } from "utils/auth";
+import { authUpdateUser } from "./auth-slice";
 
 export default function* handleAuthRegister(action) {
   const { payload } = action;
@@ -22,10 +28,44 @@ function* handleAuthLogin(action) {
     const { accessToken, refreshToken } = response.data;
     if (accessToken && refreshToken) {
       saveToken(accessToken, refreshToken);
+      yield call(handleAuthFetchMe, { payload: accessToken });
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-export { handleAuthLogin };
+function* handleAuthFetchMe(action) {
+  const { payload } = action;
+  try {
+    const response = yield call(requestAuthFetchMe, payload);
+    if (response.status === 200) {
+      yield put(
+        authUpdateUser({
+          user: response.data,
+          accessToken: payload,
+        })
+      );
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* handleAuthRefreshToken(action) {
+  const { payload } = action;
+  try {
+    const response = yield call(requestAuthRefreshToken, payload);
+    const { accessToken, refreshToken } = response.data;
+    if (response.data) {
+      saveToken(accessToken, refreshToken);
+      yield call(handleAuthFetchMe, {
+        payload: accessToken,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { handleAuthLogin, handleAuthFetchMe, handleAuthRefreshToken };
