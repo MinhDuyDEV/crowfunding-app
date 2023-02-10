@@ -6,7 +6,7 @@ import {
   requestAuthRegister,
 } from "./auth-request";
 import { call, put } from "redux-saga/effects";
-import { saveToken } from "utils/auth";
+import { logOut, saveToken } from "utils/auth";
 import { authUpdateUser } from "./auth-slice";
 
 export default function* handleAuthRegister(action) {
@@ -62,10 +62,27 @@ function* handleAuthRefreshToken(action) {
       yield call(handleAuthFetchMe, {
         payload: accessToken,
       });
+    } else {
+      yield handleAuthLogOut();
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-export { handleAuthLogin, handleAuthFetchMe, handleAuthRefreshToken };
+function* handleAuthLogOut() {
+  yield put(
+    authUpdateUser({
+      user: undefined,
+      accessToken: null,
+    })
+  );
+  logOut();
+}
+
+export {
+  handleAuthLogin,
+  handleAuthFetchMe,
+  handleAuthRefreshToken,
+  handleAuthLogOut,
+};
