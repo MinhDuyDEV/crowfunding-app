@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         primary: ["Epilogue", "sans-serif;"],
       },
+      test: {
+        text10: "text-sm font-bold",
+      },
       colors: {
         primary: "#1DC071",
         primaryExtra2: "#F1FBF7",

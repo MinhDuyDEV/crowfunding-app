@@ -63,6 +63,7 @@ const DashboardSideBar = () => {
             <button
               onClick={() => dispatch(authLogOut())}
               className={navLinkClass}
+              key={link.title}
             >
               <span>{link.icon}</span>
               <span className="md:hidden">{link.title}</span>
